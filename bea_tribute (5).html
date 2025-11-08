@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Uma declaração especial para a Bia">
+    <title>Para a Bia 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.6;
+            animation: floatUp 15s infinite ease-in;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5em;
+            background: linear-gradient(45deg, #ff6ec4, #ffb347, #ff6ec4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s infinite, pulse 2s infinite;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 2em;
+            color: #ffb347;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro-text {
+            font-size: 1.4em;
+            line-height: 2;
+            color: #ddd;
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 110, 196, 0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 110, 196, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, rgba(255, 110, 196, 0.2), rgba(120, 115, 245, 0.2));
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 110, 196, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 110, 196, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 110, 196, 0.4);
+            border-color: #ff6ec4;
+        }
+
+        .reason-card:hover::before {
+            opacity: 1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .reason-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .reason-title {
+            font-size: 2em;
+            color: #ff6ec4;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .reason-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #ccc;
+            position: relative;
+        }
+
+        .special-section {
+            background: linear-gradient(135deg, rgba(120, 115, 245, 0.2), rgba(255, 110, 196, 0.2));
+            padding: 80px 40px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 80px 0;
+            border: 3px solid rgba(255, 110, 196, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 110, 196, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .special-section h2 {
+            font-size: 3em;
+            color: #ffb347;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-section p {
+            font-size: 1.5em;
+            line-height: 2;
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-message {
+            background: linear-gradient(135deg, #ff6ec4, #7873f5);
+            padding: 100px 50px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 80px 0 100px 0;
+            box-shadow: 0 20px 60px rgba(255, 110, 196, 0.5);
+        }
+
+        .final-message h2 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .final-message p {
+            font-size: 1.8em;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-interactive {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-interactive:hover {
+            background: white;
+            color: #ff6ec4;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeInModal 0.3s;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            padding: 50px;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: slideUpModal 0.5s;
+            border: 2px solid #ff6ec4;
+        }
+
+        @keyframes slideUpModal {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .modal h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff6ec4;
+        }
+
+        .modal p {
+            font-size: 1.3em;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-close {
+            background: linear-gradient(135deg, #ff6ec4, #7873f5);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-close:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 110, 196, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3em; }
+            .subtitle { font-size: 1.5em; }
+            .reasons-grid { grid-template-columns: 1fr; gap: 20px; }
+            .intro-text { font-size: 1.2em; padding: 30px 20px; }
+            .final-message { padding: 60px 30px; }
+            .final-message h2 { font-size: 2.5em; }
+            .final-message p { font-size: 1.3em; }
+            .btn-interactive { font-size: 1.2em; padding: 15px 30px; }
+            .modal-content { padding: 30px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.2em; }
+            .intro-text { font-size: 1.1em; }
+            .reason-icon { font-size: 3em; }
+            .reason-title { font-size: 1.5em; }
+            .reason-text { font-size: 1.1em; }
+            .btn-interactive { display: block; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="floating-hearts" id="hearts"></div>
+
+    <div class="container">
+        <header>
+            <h1>Bia ❤️</h1>
+            <div class="subtitle">Gostava Muito de Te Conhecer Melhor</div>
+        </header>
+
+        <div class="intro-text">
+            Olá Bia! Criei esta página especialmente para ti porque és alguém incrível e gostava muito 
+            de ter a oportunidade de te conhecer melhor. Sei que ainda não nos conhecemos bem, 
+            mas há algo em ti que me cativa e gostava de te mostrar o quanto admiro a pessoa que és. ✨
+        </div>
+
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <span class="reason-icon">🌟</span>
+                <h3 class="reason-title">O Teu Sorriso</h3>
+                <p class="reason-text">
+                    Há algo especial no teu sorriso que ilumina qualquer ambiente. 
+                    É genuíno, caloroso e contagiante. Gostava de ser uma das razões 
+                    para te fazer sorrir mais vezes.
+                </p>
+            </div>
+
+            <div class="reason-card">
+                <span class="reason-icon">💫</span>
+                <h3 class="reason-title">A Tua Personalidade</h3>
+                <p class="reason-text">
+                    És autêntica e verdadeira. A forma como és tu mesma, 
+                    sem máscaras, é algo raro e precioso. Gostava de conhecer 
+                    mais sobre os teus sonhos, as tuas paixões e o que te faz feliz.
+                </p>
+            </div>
+
+            <div class="reason-card">
+                <span class="reason-icon">🎯</span>
+                <h3 class="reason-title">A Tua Energia</h3>
+                <p class="reason-text">
+                    Há uma energia positiva à tua volta que é impossível ignorar. 
+                    Faz com que qualquer momento se torne mais interessante e especial. 
+                    Gostava de passar mais tempo contigo para sentir essa magia.
+                </p>
+            </div>
+
+            <div class="reason-card">
+                <span class="reason-icon">🌈</span>
+                <h3 class="reason-title">A Tua Singularidade</h3>
+                <p class="reason-text">
+                    És única. Não há ninguém como tu e isso é incrível. 
+                    O teu jeito de ser, de falar, de ver o mundo... tudo em ti 
+                    é especial e gostava de descobrir mais sobre essa pessoa incrível.
+                </p>
+            </div>
+
+            <div class="reason-card">
+                <span class="reason-icon">✨</span>
+                <h3 class="reason-title">O Meu Interesse</h3>
+                <p class="reason-text">
+                    Desde que te conheci, não consigo parar de pensar em ti. 
+                    Gostava de ter a oportunidade de te conhecer melhor, 
+                    de partilhar momentos contigo e quem sabe construir algo especial juntos.
+                </p>
+            </div>
+
+            <div class="reason-card">
+                <span class="reason-icon">💝</span>
+                <h3 class="reason-title">Uma Oportunidade</h3>
+                <p class="reason-text">
+                    Tudo o que peço é uma oportunidade. Uma oportunidade para te mostrar 
+                    que posso fazer-te sorrir, apoiar-te nos teus sonhos e ser alguém 
+                    especial na tua vida. Dá-me essa chance?
+                </p>
+            </div>
+        </div>
+
+        <div class="special-section">
+            <h2>✨ Porque Gostava de Te Conquistar ✨</h2>
+            <p>
+                Não te conheço profundamente ainda, mas o que conheço é suficiente para saber 
+                que és alguém especial. Gostava de te mostrar que podes contar comigo, 
+                que posso ser alguém que te faz sorrir, que te apoia e que te valoriza pelo 
+                que realmente és. Não prometo perfeição, mas prometo sinceridade, respeito 
+                e um esforço genuíno para te fazer feliz. Dás-me uma oportunidade? 💕
+            </p>
+        </div>
+
+        <div class="final-message">
+            <h2>Bia, Dá-me Uma Oportunidade? 💖</h2>
+            <p>
+                Sei que isto pode parecer muito, mas é tudo verdade. 
+                Gostava mesmo de ter a oportunidade de te conhecer melhor, 
+                de partilhar momentos contigo e quem sabe criar algo bonito juntos. 
+                Não peço muito, apenas uma oportunidade para te mostrar que mereço o teu tempo. 
+                O que dizes? ✨
+            </p>
+            <button class="btn-interactive" type="button" onclick="showResponse('sim')">
+                Sim, Dou-te Uma Oportunidade! 💕
+            </button>
+            <button class="btn-interactive" type="button" onclick="showResponse('talvez')">
+                Talvez... Vamos Ver 🤔
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-icon" id="modal-icon" aria-hidden="true">🎉</div>
+            <h2 id="modal-title">Título</h2>
+            <p id="modal-text">Texto</p>
+            <button class="btn-close" type="button" onclick="closeModal()">Continuar</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // Criar estrelas
+            const starsContainer = document.getElementById('stars');
+            const fragment1 = document.createDocumentFragment();
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                fragment1.appendChild(star);
+            }
+            starsContainer.appendChild(fragment1);
+
+            // Criar corações flutuantes
+            const heartsContainer = document.getElementById('hearts');
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.setAttribute('aria-hidden', 'true');
+                heartsContainer.appendChild(heart);
+                setTimeout(function() { 
+                    if (heart.parentNode) heart.remove(); 
+                }, 20000);
+            }
+
+            const heartInterval = setInterval(createHeart, 2000);
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 1000);
+            }
+
+            // Resposta aos botões
+            window.showResponse = function(type) {
+                const modal = document.getElementById('modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalText = document.getElementById('modal-text');
+                const modalIcon = document.getElementById('modal-icon');
+
+                if (type === 'sim') {
+                    modalIcon.textContent = '🎉';
+                    modalTitle.textContent = 'Obrigado, Bia! 💕';
+                    modalText.innerHTML = 'Fizeste-me o homem mais feliz do mundo! Prometo fazer tudo para merecer esta oportunidade e fazer-te sorrir todos os dias! ✨';
+                    createConfetti();
+                } else if (type === 'talvez') {
+                    modalIcon.textContent = '🤗';
+                    modalTitle.textContent = 'Vou Conquistar-te! 💪';
+                    modalText.innerHTML = 'Obrigado por considerares! Vou mostrar-te que mereço a tua atenção e que posso ser alguém especial na tua vida. ✨';
+                }
+
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+            };
+
+            // Fechar modal
+            window.closeModal = function() {
+                const modal = document.getElementById('modal');
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+            };
+
+            // Criar confetti
+            function createConfetti() {
+                const colors = ['❤️', '💕', '💖', '✨', '🎉'];
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(function() {
+                        const confetti = document.createElement('div');
+                        confetti.textContent = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.cssText = 'position:fixed;left:50%;top:50%;font-size:30px;z-index:9999;pointer-events:none;';
+                        confetti.setAttribute('aria-hidden', 'true');
+                        document.body.appendChild(confetti);
+
+                        const angle = (Math.PI * 2 * i) / 100;
+                        const velocity = Math.random() * 300 + 200;
+                        const vx = Math.cos(angle) * velocity;
+                        const vy = Math.sin(angle) * velocity;
+
+                        const animation = confetti.animate([
+                            { transform: 'translate(-50%, -50%) scale(1) rotate(0deg)', opacity: 1 },
+                            { transform: 'translate(calc(-50% + ' + vx + 'px), calc(-50% + ' + vy + 'px)) scale(0) rotate(720deg)', opacity: 0 }
+                        ], {
+                            duration: 2000,
+                            easing: 'cubic-bezier(0, .9, .57, 1)'
+                        });
+                        
+                        animation.onfinish = function() { 
+                            if (confetti.parentNode) confetti.remove(); 
+                        };
+                    }, i * 10);
+                }
+            }
+
+            // Fechar modal ao clicar fora
+            window.onclick = function(event) {
+                const modal = document.getElementById('modal');
+                if (event.target === modal) {
+                    window.closeModal();
+                }
+            };
+
+            // Limpar interval quando sair da página
+            window.addEventListener('beforeunload', function() {
+                clearInterval(heartInterval);
+            });
+        })();
+    </script>
+</body>
+</html>
